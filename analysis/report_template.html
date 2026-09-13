@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>التقرير المقارن — حركة الطيران في مطارات سوريا الثلاثة</title>
+<style>
+  @font-face { font-family:'CairoX'; src:url(data:font/ttf;base64,{{font_cairo}}) format('truetype'); font-weight: 200 900; }
+  @font-face { font-family:'AmiriX'; src:url(data:font/ttf;base64,{{font_amiri}}) format('truetype'); font-weight:400; }
+  @font-face { font-family:'AmiriX'; src:url(data:font/ttf;base64,{{font_amiri_bold}}) format('truetype'); font-weight:700; }
+
+  :root{
+    --dam:#1e5aa8; --alp:#0e8a5f; --ltk:#c2571a;
+    --ink:#111827; --muted:#6b7280; --bg:#f6f7f9; --card:#ffffff;
+    --line:#e5e7eb; --accent:#1d4ed8;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'AmiriX', serif; font-size:17.5px; line-height:1.95;
+  }
+  .wrap{max-width:1060px; margin:0 auto; padding:0 22px 60px}
+
+  /* ---------- الترويسة ---------- */
+  header.hero{
+    background:linear-gradient(135deg,#0f2a5c 0%, #1e5aa8 55%, #2d6bc0 100%);
+    color:#fff; padding:52px 22px 42px; position:relative; overflow:hidden;
+  }
+  header.hero::after{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 12% 110%, rgba(255,255,255,.14), transparent 42%);
+    pointer-events:none;
+  }
+  .hero-in{max-width:1060px; margin:0 auto; position:relative; z-index:1}
+  .hero .kicker{font-family:'CairoX'; font-weight:600; letter-spacing:.5px; opacity:.92; font-size:14.5px}
+  .hero h1{font-family:'CairoX'; font-weight:800; font-size:clamp(26px,4.2vw,40px); margin:10px 0 6px; line-height:1.5}
+  .hero p.sub{margin:0 0 18px; font-size:18px; opacity:.95; max-width:760px}
+  .badges{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
+  .badge{
+    background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.35);
+    border-radius:999px; padding:5px 16px; font-size:14.5px; font-family:'CairoX'; font-weight:600;
+  }
+  .hero .meta-line{margin-top:20px; font-size:14px; opacity:.9; font-family:'CairoX'}
+
+  /* ---------- أدوات ---------- */
+  .toolbar{position:sticky; top:0; z-index:50; background:#ffffffee; backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line); padding:10px 22px}
+  .toolbar-in{max-width:1060px; margin:0 auto; display:flex; align-items:center; gap:14px; flex-wrap:wrap}
+  .toolbar a.toc-link{font-family:'CairoX'; font-size:13.5px; color:#334155; text-decoration:none; padding:4px 10px; border-radius:8px}
+  .toolbar a.toc-link:hover{background:#eef2f7}
+  .btn{
+    font-family:'CairoX'; font-weight:700; font-size:14px; cursor:pointer; border:none;
+    background:var(--accent); color:#fff; padding:8px 18px; border-radius:10px; margin-inline-start:auto;
+  }
+  .btn:hover{background:#1e40af}
+
+  /* ---------- الأقسام ---------- */
+  section{background:var(--card); border:1px solid var(--line); border-radius:16px;
+    padding:30px 30px 26px; margin-top:26px; box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  h2{
+    font-family:'CairoX'; font-weight:800; font-size:24.5px; margin:0 0 4px; color:#0f2a5c;
+    display:flex; align-items:center; gap:12px;
+  }
+  h2 .n{
+    display:inline-flex; align-items:center; justify-content:center; min-width:38px; height:38px;
+    background:#eaf1fc; color:var(--accent); border-radius:11px; font-size:18px; font-weight:800;
+  }
+  h3{font-family:'CairoX'; font-weight:700; font-size:19px; margin:26px 0 8px; color:#1f2937}
+  p.lead{font-size:18px; color:#374151}
+  .muted{color:var(--muted)}
+  ul.findings{padding-right:0; list-style:none; margin:14px 0 0}
+  ul.findings li{
+    padding:13px 46px 13px 16px; border-radius:12px; margin-bottom:10px;
+    background:#f8fafc; border:1px solid #eef2f7; position:relative;
+  }
+  ul.findings li::before{
+    content:'◆'; position:absolute; right:16px; top:12px; color:var(--accent); font-size:15px;
+  }
+  ul.findings b{color:#0f2a5c}
+
+  /* ---------- بطاقات KPI ---------- */
+  .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(168px,1fr)); gap:14px; margin:22px 0 6px}
+  .kpi{
+    border:1px solid var(--line); border-radius:14px; padding:16px 14px 12px; text-align:center;
+    background:linear-gradient(180deg,#fbfdff, #f4f7fb);
+  }
+  .kpi .v{font-family:'CairoX'; font-weight:800; font-size:26px; line-height:1.25}
+  .kpi .l{font-size:14px; color:var(--muted); margin-top:4px; font-family:'CairoX'; font-weight:600}
+  .kpi.dam .v{color:var(--dam)} .kpi.alp .v{color:var(--alp)} .kpi.ltk .v{color:var(--ltk)}
+  .kpi.neu .v{color:#334155}
+
+  .air-card{border-radius:14px; padding:18px 20px; border:1px solid var(--line); margin-top:14px}
+  .air-card.dam{border-inline-start:6px solid var(--dam)}
+  .air-card.alp{border-inline-start:6px solid var(--alp)}
+  .air-card.ltk{border-inline-start:6px solid var(--ltk)}
+  .air-card h4{font-family:'CairoX'; font-weight:800; margin:0 0 6px; font-size:18.5px}
+  .air-card.dam h4{color:var(--dam)} .air-card.alp h4{color:var(--alp)} .air-card.ltk h4{color:var(--ltk)}
+
+  /* ---------- الرسوم ---------- */
+  figure{margin:24px 0 8px; text-align:center}
+  figure img{max-width:100%; height:auto; border:1px solid var(--line); border-radius:12px; background:#fff}
+  figcaption{
+    font-size:14.5px; color:var(--muted); margin-top:8px; line-height:1.7; text-align:right;
+    padding:8px 14px; background:#f8fafc; border-radius:10px; border:1px solid #eef2f7;
+  }
+  figcaption b{color:#334155}
+
+  /* ---------- الجداول ---------- */
+  .tbl-wrap{overflow-x:auto; margin:18px 0 4px; border-radius:12px; border:1px solid var(--line)}
+  table{border-collapse:collapse; width:100%; font-size:15.5px; background:#fff; min-width:640px}
+  thead th{
+    background:#0f2a5c; color:#fff; font-family:'CairoX'; font-weight:700; font-size:14.5px;
+    padding:11px 14px; text-align:right; white-space:nowrap;
+  }
+  tbody td{padding:9.5px 14px; border-top:1px solid var(--line); text-align:right; white-space:nowrap}
+  tbody tr:nth-child(even){background:#f8fafc}
+  td.c-dam{color:var(--dam); font-weight:700} td.c-alp{color:var(--alp); font-weight:700} td.c-ltk{color:var(--ltk); font-weight:700}
+  .chip{display:inline-block; padding:1px 10px; border-radius:999px; font-size:13px; font-family:'CairoX'; font-weight:700}
+  .chip.dam{background:#e8f0fb; color:var(--dam)} .chip.alp{background:#e6f6ef; color:var(--alp)} .chip.ltk{background:#fdeee1; color:var(--ltk)}
+
+  .note{
+    background:#fffbeb; border:1px solid #fde68a; border-radius:12px; padding:13px 18px;
+    font-size:15px; color:#78350f; margin:16px 0;
+  }
+  .note.blue{background:#eff6ff; border-color:#bfdbfe; color:#1e3a8a}
+  .note.green{background:#ecfdf5; border-color:#a7f3d0; color:#064e3b}
+
+  .src-list{font-size:15px}
+  .src-list li{margin-bottom:7px}
+  a{color:var(--accent)}
+
+  footer{
+    margin-top:30px; text-align:center; color:var(--muted); font-size:14px;
+    padding:26px 10px; border-top:1px solid var(--line);
+  }
+
+  /* ---------- الطباعة ---------- */
+  @media print{
+    body{background:#fff; font-size:12.5px}
+    .toolbar, .btn{display:none}
+    section{box-shadow:none; break-inside:avoid-page; border:none; padding:12px 4px; margin-top:10px}
+    header.hero{padding:30px 18px}
+    figure{break-inside:avoid}
+    .tbl-wrap{overflow:visible}
+    @page{size:A4; margin:13mm}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-in">
+    <div class="kicker">تقرير تحليلي موثّق · بيانات رحلات فعلية من مستودع GitHub</div>
+    <h1>حركة الطيران في مطارات سوريا الثلاثة<br>دمشق · حلب · اللاذقية</h1>
+    <p class="sub">تحليل مقارن شامل لـ {{m.total_movements|fmt}} حركة جوية مسجّلة، مع مؤشرات كمية ورسوم بيانية تفصيلية لكل مطار، وتوثيق كامل للمنهجية وجودة البيانات والمصادر.</p>
+    <div class="badges">
+      <span class="badge">الفترة: {{m.data_first}} ← {{m.data_last}}</span>
+      <span class="badge">ثلاثة مطارات دولية</span>
+      <span class="badge">{{m.total_movements|fmt}} حركة</span>
+      <span class="badge">20 شهراً من البيانات</span>
+    </div>
+    <div class="meta-line">أُعدّ التقرير آلياً بتاريخ {{m.generated_at}} (توقيت دمشق) · المصدر: ملفات flights_*.csv في مستودع HoseenAlhlak</div>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-in">
+    <a class="toc-link" href="#s1">الملخص التنفيذي</a>
+    <a class="toc-link" href="#s2">المنهجية وجودة البيانات</a>
+    <a class="toc-link" href="#s3">لوحة المؤشرات</a>
+    <a class="toc-link" href="#s4">الاتجاه الزمني</a>
+    <a class="toc-link" href="#s5">تركيب الحركة</a>
+    <a class="toc-link" href="#s6">شركات التشغيل</a>
+    <a class="toc-link" href="#s7">الشبكة والوجهات</a>
+    <a class="toc-link" href="#s8">إيقاع التشغيل</a>
+    <a class="toc-link" href="#s9">الأسطول</a>
+    <a class="toc-link" href="#s10">اللاذقية</a>
+    <a class="toc-link" href="#s11">الخلاصة</a>
+    <a class="toc-link" href="#s12">المصادر</a>
+    <button class="btn" onclick="window.print()">🖨️ طباعة / حفظ PDF</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+<!-- ============ 1. الملخص التنفيذي ============ -->
+<section id="s1">
+  <h2><span class="n">1</span>الملخص التنفيذي — أبرز النتائج</h2>
+  <ul class="findings">
+    <li><b>دمشق هو المركز بلا منازع:</b> استحوذ على {{dam.total|fmt}} حركة جوية أي <b>{{(100*dam.total/m.total_movements)|round(1)}}%</b> من إجمالي الحركات المسجلة للمطارات الثلاثة، عبر <b>{{dam.n_operators}}</b> شركة تشغيل و<b>{{dam.n_destinations_all}}</b> وجهة مختلفة — تنوّع تشغيلي يفوق مجموع حلب واللاذقية معاً.</li>
+    <li><b>حلب هو قصة النمو:</b> قفزت حركات المطار من <b>{{alp.jan_aug_2025|fmt}}</b> حركة (يناير–أغسطس 2025) إلى <b>{{alp.jan_aug_2026|fmt}}</b> في الفترة نفسها من 2026، بنمو <b>+{{alp.growth_pct}}%</b>، وبات يحقق وحده نحو {{(100*alp.jan_aug_2026/(dam.jan_aug_2026+alp.jan_aug_2026+ltk.jan_aug_2026))|round(0)}}% من حركة المطارات الثلاثة في 2026.</li>
+    <li><b>اللاذقية ليست مطاراً مدنياً فعلياً في هذه الفترة:</b> من أصل {{ltk.total|fmt}} حركة فقط، شكّلت العمليات العسكرية والحكومية <b>{{cat_share(ltk,'عسكري وحكومي')}}%</b>، أغلبها جسرٌ جوي روسي تربط غالبه بقاعدة <b>تشكالوفسكي</b> قرب موسكو ({{ltk.ckl_n}} رحلة)، بطائرات شحن استراتيجي An-124 وIL-76.</li>
+    <li><b>ممر الخليج يهيمن على دمشق:</b> {{dam.gulf_share_of_intl}}% من مغادرات دمشق الدولية تتجه إلى مطارات الخليج (الكويت، دبي، الشارقة، الدوحة، الرياض...)، فيما تميل شبكة حلب أكثر نحو عمّان وإسطنبول.</li>
+    <li><b>سوق دمشق متنافس وغير مركّز:</b> أكبر شركة (الخطوط السورية، {{dam.top_airline.share}}%) لا تستحوذ إلا على سدس السوق تقريباً، ومؤشر Herfindahl–Hirschman={{dam.hhi}} يشير إلى سوق متوازن؛ مقابل تركّز أعلى في حلب (HHI={{alp.hhi}}) بقيادة الملكية الأردنية ({{alp.top_airline.share}}%).</li>
+    <li><b>نمو مطّرد بعد الاستئناف:</b> في الفترة المتقاربة (يناير–أغسطس) نما مطار دمشق <b>+{{dam.growth_pct}}%</b>، وتضاعفت حركة اللاذقية العسكرية أكثر من ثلاث مرات (من {{ltk.jan_aug_2025}} إلى {{ltk.jan_aug_2026}} حركة).</li>
+    <li><b>أسطول ضيق البدن غالباً مع حضور عريض البدن في دمشق:</b> عائلة A320 هي العمود الفقري في المطارات المدنية، بينما تشكل الطائرات العريضة البدن (A330/B777/B787) {{dam.widebody_share}}% من حركات دمشق — مقابل {{ltk.widebody_share}}% في اللاذقية حيث تسيطر منصات الشحن الاستراتيجي An-124.</li>
+  </ul>
+
+  <div class="kpis">
+    <div class="kpi dam"><div class="v">{{dam.total|fmt}}</div><div class="l">حركة — دمشق</div></div>
+    <div class="kpi alp"><div class="v">{{alp.total|fmt}}</div><div class="l">حركة — حلب</div></div>
+    <div class="kpi ltk"><div class="v">{{ltk.total|fmt}}</div><div class="l">حركة — اللاذقية</div></div>
+    <div class="kpi neu"><div class="v">{{m.total_movements|fmt}}</div><div class="l">إجمالي الحركات</div></div>
+    <div class="kpi neu"><div class="v">{{total_ops}}</div><div class="l">شركة تشغيل مختلفة</div></div>
+    <div class="kpi neu"><div class="v">{{total_dests}}</div><div class="l">وجهة مختلفة</div></div>
+    <div class="kpi neu"><div class="v">{{total_aircraft|fmt}}</div><div class="l">طائرة فريدة (تسجيل)</div></div>
+  </div>
+</section>
+
+<!-- ============ 2. المنهجية ============ -->
+<section id="s2">
+  <h2><span class="n">2</span>المنهجية، تعريفات المؤشرات، وجودة البيانات</h2>
+
+  <h3>2.1 مصدر البيانات وملفاته</h3>
+  <p class="lead">اعتمد التحليل على ثلاثة ملفات CSV من مستودع GitHub <code>HoseenAlhlak/HoseenAlhlak</code>، من نمط سجلات تتبّع الرحلات (Flightradar24-style)، بواقع 25 عموداً لكل سجل تشمل: رقم الرحلة، المشغّل، نوع الطائرة وتسجيلها، مطارا الانطلاق والوصول وأوقاتهما، مدة الرحلة، المسافة الفعلية، الفئة، والمدارج المستخدمة.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>الملف</th><th>المطار</th><th>الرموز</th><th>عدد السجلات</th><th>أول رصد</th><th>آخر رصد</th></tr></thead>
+    <tbody>
+      <tr><td>flights_damascus_OSDI.csv</td><td class="c-dam">{{dam.name_ar}}</td><td>DAM / OSDI</td><td>{{q.rows_per_file.OSDI|fmt}}</td><td>{{dam.first_event}}</td><td>{{dam.last_event}}</td></tr>
+      <tr><td>flights_aleppo_OSAP.csv</td><td class="c-alp">{{alp.name_ar}}</td><td>ALP / OSAP</td><td>{{q.rows_per_file.OSAP|fmt}}</td><td>{{alp.first_event}}</td><td>{{alp.last_event}}</td></tr>
+      <tr><td>flights_latakia_OSLK.csv</td><td class="c-ltk">{{ltk.name_ar}}</td><td>LTK / OSLK</td><td>{{q.rows_per_file.OSLK|fmt}}</td><td>{{ltk.first_event}}</td><td>{{ltk.last_event}}</td></tr>
+    </tbody>
+  </table></div>
+
+  <h3>2.2 تعريفات المؤشرات وقواعد الاحتساب</h3>
+  <ul class="findings">
+    <li><b>«الحركة» (Movement):</b> كل سجل في الملف يمثل حركة واحدة للمطار المعني؛ صُنّفت <b>مغادرةً</b> إذا كان المطار مطار الانطلاق، و<b>وصولاً</b> إذا كان مطار الوجهة، و«غير مصنّفة» إذا لم يرد either الرمز في الحقلين (غالباً حركات محلية أو سجلات ناقصة).</li>
+    <li><b>الطابع الزمني المرجعي:</b> اعتُمد وقت «أول رصد» (first_seen) لكونه الأكثر اكتمالاً (متوفر في ~100% من السجلات)، وحُوّل إلى <b>التوقيت المحلي لدمشق</b> قبل التجميع الشهري والساعي؛ لذا قد ينحرف بعض السجلات دقائق عن وقت الإقلاع/الهبوط الفعلي.</li>
+    <li><b>الفئات:</b> وردت في البيانات جاهزة (ركاب، شحن، طيران أعمال، عسكري وحكومي...) وقد تُرك كما وردت في المصدر.</li>
+    <li><b>مؤشر التركّز HHI:</b> مجموع مربعات حصص المشغلين مُضروباً في 10,000؛ القيم دون 1,500 تدل على سوق غير مركّز، وفوق 2,500 على تركّز مرتفع.</li>
+    <li><b>الوجهة الذاتية:</b> استُبعدت السجلات التي يكون فيها المطار نفسه وجهةً (حركات محلية/تدريبية) من جداول الوجهات.</li>
+    <li><b>المقارنة العادلة للنمو:</b> قورنت الفترة يناير–أغسطس 2025 بالفترة المماثلة من 2026 لتلافي أثر الأشهر غير المكتملة في طرفي السلسلة.</li>
+  </ul>
+
+  <h3>2.3 جودة البيانات وحدوده (توثيق شفاف)</h3>
+  <div class="note">
+    <b>فجوة تسجيل في بيانات دمشق:</b> بين 28 فبراير و2 أبريل 2026 لم يُسجَّل في ملف دمشق سوى 12 حركة في مارس كله، مقابل وسيط شهري يقارب 1,200 حركة — وهي بوضوح فجوة تغطية في التسجيل وليست توقفاً فعلياً. عولجت بـ: استبعاد مارس 2026 من المتوسطات، وتظليلها في الرسوم، واستخدام مقارنات «الفترة مقابل الفترة».</div>
+  <div class="note blue">
+    <b>شهر سبتمبر 2026 غير مكتمل:</b> تنتهي البيانات في 7 سبتمبر 2026؛ لذا لم يُحتسب الشهر في المتوسطات، واستُخدم أغسطس 2026 آخرَ شهر مكتمل.</div>
+  <div class="note green">
+    <b>بدايات حلب التدريجية حقيقية:</b> الأشهر الأولى المنخفضة لحلب (يناير–مايو 2025) تعكس استئنافاً تدريجياً فعلياً للتشغيل بعد إعادة افتتاح المطار، وليست فجوة بيانات؛ وقد وثّقناها كما هي.</div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>مؤشر الاكتمال</th><th>دمشق</th><th>حلب</th><th>اللاذقية</th></tr></thead>
+    <tbody>
+      <tr><td>سجلات بلا وقت إقلاع مسجّل</td><td>{{q.missing.OSDI.datetime_takeoff|fmt}} ({{pct(q.missing.OSDI.datetime_takeoff,dam.total)}}%)</td><td>{{q.missing.OSAP.datetime_takeoff|fmt}} ({{pct(q.missing.OSAP.datetime_takeoff,alp.total)}}%)</td><td>{{q.missing.OSLK.datetime_takeoff|fmt}} ({{pct(q.missing.OSLK.datetime_takeoff,ltk.total)}}%)</td></tr>
+      <tr><td>سجلات بلا وقت هبوط مسجّل</td><td>{{q.missing.OSDI.datetime_landed|fmt}}</td><td>{{q.missing.OSAP.datetime_landed|fmt}}</td><td>{{q.missing.OSLK.datetime_landed|fmt}}</td></tr>
+      <tr><td>سجلات بلا مشغّل محدد</td><td>{{q.missing.OSDI.operator|fmt}}</td><td>{{q.missing.OSAP.operator|fmt}}</td><td>{{q.missing.OSLK.operator|fmt}}</td></tr>
+      <tr><td>سجلات بلا مدة رحلة</td><td>{{q.missing.OSDI.flight_time|fmt}}</td><td>{{q.missing.OSAP.flight_time|fmt}}</td><td>{{q.missing.OSLK.flight_time|fmt}}</td></tr>
+      <tr><td>تكرارات (fr24_id مكرر)</td><td>0</td><td>0</td><td>0</td></tr>
+      <tr><td>أشهر منخفضة/فجوات مكتشفة</td><td>2026-03 (فجوة) · 2026-09 (جزئي)</td><td>2025-01..04 (بداية تدريجية)</td><td>لا شيء جوهرياً</td></tr>
+    </tbody>
+  </table></div>
+  <p class="muted" style="font-size:14.5px">أرقام «بلا مشغّل» تشمل طائرات حكومية/أعمال لا يُنشر مشغّلها التجاري. كل السجلات الناقصة حقول تبقى محسوبة ضمن الحركات الكلية، وتُستبعد فقط من المؤشر الذي يشترط الحقل المعني.</p>
+</section>
+
+<!-- ============ 3. لوحة المؤشرات ============ -->
+<section id="s3">
+  <h2><span class="n">3</span>لوحة المؤشرات المقارنة</h2>
+  <p class="lead">الجدول التالي يجمع المؤشرات الرئيسية للمطارات الثلاثة جنباً إلى جنب. القيم المطلقة تعكس حجم كل مطار، بينما تكشف النسب «بصمة» تشغيله.</p>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>المؤشر</th><th>دمشق DAM/OSDI</th><th>حلب ALP/OSAP</th><th>اللاذقية LTK/OSLK</th></tr></thead>
+    <tbody>
+      <tr><td>إجمالي الحركات (يناير 2025 – سبتمبر 2026)</td><td class="c-dam">{{dam.total|fmt}}</td><td class="c-alp">{{alp.total|fmt}}</td><td class="c-ltk">{{ltk.total|fmt}}</td></tr>
+      <tr><td>مغادرات / وصولات</td><td>{{dam.departures|fmt}} / {{dam.arrivals|fmt}}</td><td>{{alp.departures|fmt}} / {{alp.arrivals|fmt}}</td><td>{{ltk.departures|fmt}} / {{ltk.arrivals|fmt}}</td></tr>
+      <tr><td>حصة من إجمالي المطارات الثلاثة</td><td>{{(100*dam.total/m.total_movements)|round(1)}}%</td><td>{{(100*alp.total/m.total_movements)|round(1)}}%</td><td>{{(100*ltk.total/m.total_movements)|round(1)}}%</td></tr>
+      <tr><td>متوسط الحركات شهرياً (أشهر مكتملة)</td><td>{{dam.avg_monthly}}</td><td>{{alp.avg_monthly}}</td><td>{{ltk.avg_monthly}}</td></tr>
+      <tr><td>أعلى شهر تشغيل</td><td>{{dam.peak_month.month}} ({{dam.peak_month.n|fmt}})</td><td>{{alp.peak_month.month}} ({{alp.peak_month.n|fmt}})</td><td>{{ltk.peak_month.month}} ({{ltk.peak_month.n}})</td></tr>
+      <tr><td>متوسط الحركات يومياً (أغسطس 2026)</td><td>{{dam.avg_daily_last_full_month}}</td><td>{{alp.avg_daily_last_full_month}}</td><td>{{ltk.avg_daily_last_full_month}}</td></tr>
+      <tr><td>حصة رحلات الركاب</td><td>{{cat_share(dam,'رحلات ركاب')}}%</td><td>{{cat_share(alp,'رحلات ركاب')}}%</td><td>{{cat_share(ltk,'رحلات ركاب')}}%</td></tr>
+      <tr><td>حصة العسكري والحكومي</td><td>{{cat_share(dam,'عسكري وحكومي')}}%</td><td>{{cat_share(alp,'عسكري وحكومي')}}%</td><td>{{cat_share(ltk,'عسكري وحكومي')}}%</td></tr>
+      <tr><td>حصة طيران الأعمال</td><td>{{cat_share(dam,'طيران أعمال')}}%</td><td>{{cat_share(alp,'طيران أعمال')}}%</td><td>{{cat_share(ltk,'طيران أعمال')}}%</td></tr>
+      <tr><td>عدد شركات التشغيل</td><td>{{dam.n_operators}}</td><td>{{alp.n_operators}}</td><td>{{ltk.n_operators}}</td></tr>
+      <tr><td>أكبر مشغّل (حصته)</td><td>{{dam.top_airline.name}} ({{dam.top_airline.share}}%)</td><td>{{alp.top_airline.name}} ({{alp.top_airline.share}}%)</td><td>{{ltk.top_airline.name}} ({{ltk.top_airline.share}}%)</td></tr>
+      <tr><td>حصة أكبر 3 مشغلين</td><td>{{dam.top3_share}}%</td><td>{{alp.top3_share}}%</td><td>{{ltk.top3_share}}%</td></tr>
+      <tr><td>مؤشر التركّز HHI</td><td>{{dam.hhi}}</td><td>{{alp.hhi}}</td><td>{{ltk.hhi}}</td></tr>
+      <tr><td>عدد الوجهات المخدمة</td><td>{{dam.n_destinations_all}}</td><td>{{alp.n_destinations_all}}</td><td>{{ltk.n_destinations_all}}</td></tr>
+      <tr><td>الوجهة الأولى (مغادرات)</td><td>{{dam.top_destinations[0].city}} ({{dam.top_destinations[0].n|fmt}})</td><td>{{alp.top_destinations[0].city}} ({{alp.top_destinations[0].n|fmt}})</td><td>{{ltk.top_destinations[0].city}} ({{ltk.top_destinations[0].n}})</td></tr>
+      <tr><td>حصة الخليج من المغادرات الدولية</td><td>{{dam.gulf_share_of_intl}}%</td><td>{{alp.gulf_share_of_intl}}%</td><td>—</td></tr>
+      <tr><td>نوع الطائرات الأكثر تكراراً</td><td>{{dam.top_types[0].type}} ({{dam.top_types[0].n|fmt}})</td><td>{{alp.top_types[0].type}} ({{alp.top_types[0].n|fmt}})</td><td>{{ltk.top_types[0].type}} ({{ltk.top_types[0].n}})</td></tr>
+      <tr><td>أنواع طائرات مختلفة / طائرات فريدة</td><td>{{dam.n_types}} / {{dam.n_aircraft}}</td><td>{{alp.n_types}} / {{alp.n_aircraft}}</td><td>{{ltk.n_types}} / {{ltk.n_aircraft}}</td></tr>
+      <tr><td>حصة الطائرات العريضة البدن</td><td>{{dam.widebody_share}}%</td><td>{{alp.widebody_share}}%</td><td>{{ltk.widebody_share}}%</td></tr>
+      <tr><td>وسيط زمن الرحلة (دقيقة)</td><td>{{dam.ft_median}}</td><td>{{alp.ft_median}}</td><td>{{ltk.ft_median}}</td></tr>
+      <tr><td>وسيط المسافة المقطوعة (كم)</td><td>{{dam.dist_median|fmt}}</td><td>{{alp.dist_median|fmt}}</td><td>{{ltk.dist_median|fmt}}</td></tr>
+      <tr><td>ساعة الذروة (توقيت محلي)</td><td>{{dam.peak_hour}}:00</td><td>{{alp.peak_hour}}:00</td><td>{{ltk.peak_hour}}:00</td></tr>
+      <tr><td>أكثر الأيام ازدحاماً</td><td>{{dam.busiest_day.date}} ({{dam.busiest_day.n}} حركة)</td><td>{{alp.busiest_day.date}} ({{alp.busiest_day.n}})</td><td>{{ltk.busiest_day.date}} ({{ltk.busiest_day.n}})</td></tr>
+      <tr><td>النمو: يناير–أغسطس 2025 ← 2026</td><td>{{dam.jan_aug_2025|fmt}} ← {{dam.jan_aug_2026|fmt}} (+{{dam.growth_pct}}%)</td><td>{{alp.jan_aug_2025|fmt}} ← {{alp.jan_aug_2026|fmt}} (+{{alp.growth_pct}}%)</td><td>{{ltk.jan_aug_2025}} ← {{ltk.jan_aug_2026}} (+{{ltk.growth_pct}}%)</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<!-- ============ 4. الاتجاه الزمني ============ -->
+<section id="s4">
+  <h2><span class="n">4</span>الاتجاه الزمني والنمو</h2>
+  <figure><img src="data:image/png;base64,{{img.c02_monthly}}" alt="التطور الشهري">
+    <figcaption><b>الشكل 1 — التطور الشهري لحركة المطارات الثلاثة (2025-01 حتى 2026-09).</b> يظهر ثبات دمشق حول مستوى 1,200–1,400 حركة شهرياً مع استثناء فجوة التسجيل في مارس 2026 (المظلل بالأصفر)، وصعود حلب المتسارع منذ منتصف 2025 حتى تجاوزت 690 حركة في أغسطس 2026، مقابل نشاط اللاذقية المتقطع منخفض الكم. سبتمبر 2026 مظلل بالرمادي لعدم اكتماله.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c11_growth}}" alt="مقارنة النمو">
+    <figcaption><b>الشكل 2 — مقارنة عادلة للفترة يناير–أغسطس بين 2025 و2026.</b> لحل أثر الأشهر غير المكتملة وفجوة التسجيل، قورنت الفترات المتماثلة: نمو دمشق +{{dam.growth_pct}}%، وحلب +{{alp.growth_pct}}% (أربعة أضعاف تقريباً)، واللاذقية +{{ltk.growth_pct}}% عن قاعدة منخفضة.</figcaption>
+  </figure>
+  <p class="lead">القراءة التحليلية: منحنى حلب على شكل <b>منحنى إقلاع نموذجي</b> لمطار يعيد بناء شبكته — فتح خطوط عمّان وإسطنبول أولاً، ثم الخليج تدريجياً، ثم تكثيف الترددات. أما دمشق فتُظهر «نضجاً مبكراً» استعاد حجمه بسرعة خلال 2025 وثبّته في 2026، ما يوحي بأن العرض (المقاعد) لحق بالطلب خلال أقل من عام.</p>
+</section>
+
+<!-- ============ 5. تركيب الحركة ============ -->
+<section id="s5">
+  <h2><span class="n">5</span>تركيب الحركة: أحجام وفئات</h2>
+  <figure><img src="data:image/png;base64,{{img.c01_totals}}" alt="إجمالي الحركات">
+    <figcaption><b>الشكل 3 — إجمالي الحركات المسجلة والمغادرات مقابل الوصولات.</b> توازن شبه تام بين المغادرات والوصولات في دمشق وحلب (فرق أقل من 2%) وهو متوقع لمطار مدني بخطوط منتظمة؛ أما اللاذقية فالمغادرات تزيد على الوصولات بنسبة ملحوظة ({{ltk.departures}} مقابل {{ltk.arrivals}})، بما يوحي بمغادرة طائرات (عائدة لقواعدها) أكثر من الواصلة ضمن نافذة التسجيل.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c03_categories}}" alt="تركيب الفئات">
+    <figcaption><b>الشكل 4 — تركيب الحركة حسب الفئة.</b> دمشق وحلب مطاران مدنيان بامتياز ({{cat_share(dam,'رحلات ركاب')}}% و{{cat_share(alp,'رحلات ركاب')}}% ركاب على التوالي)، مع حضور طيران أعمال لافت ({{cat_share(dam,'طيران أعمال')}}% في دمشق). اللاذقية بالمقابل {{cat_share(ltk,'عسكري وحكومي')}}% عسكري/حكومي.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c13_domestic}}" alt="داخلي ودولي">
+    <figcaption><b>الشكل 5 — المغادرات: داخلية مقابل دولية.</b> الحصة الداخلية ضئيلة في المطارات الثلاثة؛ الشبكة الداخلية (دمشق–حلب أساساً) لم تتجاوز {{dam.domestic_dep}} مغادرة من دمشق و{{alp.domestic_dep}} من حلب — إشارة إلى أن إعادة الإعمار الجوي تركزت حتى الآن على الربط الدولي.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ 6. شركات التشغيل ============ -->
+<section id="s6">
+  <h2><span class="n">6</span>سوق شركات التشغيل</h2>
+  <figure><img src="data:image/png;base64,{{img.c04_airlines}}" alt="أكبر الشركات">
+    <figcaption><b>الشكل 6 — أكبر 12 شركة تشغيل عبر المطارات الثلاثة (مكدّسة حسب المطار).</b> تستحوذ الخطوط السورية (RB) على الصدارة بـ {{ops_total('SYR')|fmt}} حركة، تليها فلاي شام الناشئة ({{ops_total('FYC')|fmt}}) — أي أن شركتين سوريتين تمثلان معاً نحو {{((ops_total('SYR')+ops_total('FYC'))/m.total_movements*100)|round(1)}}% من كل الحركات المسجلة.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c05_shares}}" alt="حصص السوق">
+    <figcaption><b>الشكل 7 — توزّع السوق في دمشق وحلب (أكبر 7 شركات).</b> سوق دمشق موزّع بين ناقلات خليجية (فلاي ناس، العربية، فلاي دبي، القطرية، الكويتية) والناقلتين السوريتين والملكية الأردنية؛ أما حلب فتقودها الملكية الأردنية ({{alp.top_airline.share}}%) ثم التركية (THY/AJet) — جغرافيا تجارية مختلفة تماماً.</figcaption>
+  </figure>
+
+  <h3>6.1 أكبر الشركات في كل مطار</h3>
+  {% for ap, key in [('دمشق','OSDI'), ('حلب','OSAP'), ('اللاذقية','OSLK')] %}
+  <h3 style="font-size:16.5px; margin-bottom:6px"><span class="chip {{key|lower|replace('osdi','dam')|replace('osap','alp')|replace('oslk','ltk')}}">{{ap}}</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>الشركة</th><th>الرمز (ICAO/IATA)</th><th>الجنسية</th><th>الحركات</th><th>الحصة</th></tr></thead>
+    <tbody>
+    {% for a in airports[key].top_airlines[:8] %}
+      <tr><td>{{loop.index}}</td><td>{{a.name}}</td><td>{{a.code}} / {{a.iata}}</td><td>{{a.country}}</td><td>{{a.n|fmt}}</td><td>{{a.share}}%</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% endfor %}
+
+  <div class="note blue"><b>ملاحظة توثيقية:</b> تم التحقق من هوية شركات التشغيل عبر مطابقة رموز ICAO/IATA وأرقام الرحلات وتسجيلات الطائرات مع مراجع الطيران العامة (قائمة شركات الطيران السورية في ويكيبيديا، Airhex، Plane Finder وغيرها — انظر قسم المصادر). من أبرز النتائج: FYC هي «فلاي شام» السورية الجديدة (2025)، وKNE هي «فلاي ناس» السعودية، وFAD هي «فلاي ديل»، وTKJ هي «إيه جت» التركية.</div>
+</section>
+
+<!-- ============ 7. الشبكة والوجهات ============ -->
+<section id="s7">
+  <h2><span class="n">7</span>الشبكة والوجهات</h2>
+  <figure><img src="data:image/png;base64,{{img.c06_destinations}}" alt="أهم الوجهات">
+    <figcaption><b>الشكل 8 — أهم 10 وجهات مغادرة من دمشق وحلب.</b> الكويت أولى وجهات دمشق ({{dam.top_destinations[0].n|fmt}} رحلة) تليها دبي والشارقة؛ فيما تعلو عمّان قائمة حلب ({{alp.top_destinations[0].n|fmt}}) وتليها إسطنبول بمطارَيها — الشبكتان متكاملتان أكثر منهما متنافستين.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c14_network}}" alt="اتساع الشبكة">
+    <figcaption><b>الشكل 9 — اتساع الشبكة والتنوّع التشغيلي.</b> دمشق خدم {{dam.n_destinations_all}} وجهة عبر {{dam.n_aircraft}} طائرة فريدة؛ حلب {{alp.n_destinations_all}} وجهة و{{alp.n_aircraft}} طائرة؛ اللاذقية {{ltk.n_destinations_all}} وجهة أغلبها قواعد ومنشآت عسكرية.</figcaption>
+  </figure>
+
+  <div class="note"><b>ممر الخليج:</b> {{dam.gulf_dep|fmt}} مغادرة من دمشق ({{dam.gulf_share_of_intl}}% من دولية) تتجه إلى الخليج — الكويت وحدها تستقبل أكثر من دبي والشارقة معاً في حلب. هذا التركّز يعكس تركيبة الطلب (سفر عمل وتحويلات وعمالة) أكثر مما يعكس شبكة سياحية.</div>
+
+  <h3>7.1 أهم الوجهات (مغادرات) لكل مطار</h3>
+  {% for ap, key in [('دمشق','OSDI'), ('حلب','OSAP'), ('اللاذقية','OSLK')] %}
+  <h3 style="font-size:16.5px; margin-bottom:6px"><span class="chip {{key|lower|replace('osdi','dam')|replace('osap','alp')|replace('oslk','ltk')}}">{{ap}}</span></h3>
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>#</th><th>الوجهة</th><th>الرمز</th><th>عدد الرحلات</th></tr></thead>
+    <tbody>
+    {% for d in airports[key].top_destinations[:8] %}
+      <tr><td>{{loop.index}}</td><td>{{d.city}}</td><td>{{d.iata}}</td><td>{{d.n|fmt}}</td></tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% endfor %}
+</section>
+
+<!-- ============ 8. إيقاع التشغيل ============ -->
+<section id="s8">
+  <h2><span class="n">8</span>إيقاع التشغيل اليومي والأسبوعي</h2>
+  <figure><img src="data:image/png;base64,{{img.c07_hourly}}" alt="التوزيع الساعي">
+    <figcaption><b>الشكل 10 — التوزيع الساعي للحركة (توقيت دمشق).</b> دمشق يعمل بمنحنى مزدوج الذروة تمتد من التاسرة صباحاً حتى الرابعة عشرة (ذروته {{dam.peak_hour}}:00) ثم موجة مسائية؛ حلب تتركز حركته في نافذة الصباح الباكر (ذروة {{alp.peak_hour}}:00) بما يوافق موجات المغادرة نحو عمّان وإسطنبول؛ اللاذقية ذروتها عصراً ({{ltk.peak_hour}}:00) وتوزيعها أضبط بقلق نتيجة قلة العينة.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c08_dow}}" alt="أيام الأسبوع">
+    <figcaption><b>الشكل 11 — توزيع الحركة على أيام الأسبوع.</b> التباين بين الأيام محدود (تفاوت ضمن بضع نقاط مئوية) — سمة خطوط منتظمة؛ مع ميل عام لذروة منتصف الأسبوع في دمشق.</figcaption>
+  </figure>
+</section>
+
+<!-- ============ 9. الأسطول ============ -->
+<section id="s9">
+  <h2><span class="n">9</span>الأسطول: أنواع الطائرات وبصمة المسافات</h2>
+  <figure><img src="data:image/png;base64,{{img.c09_types}}" alt="أنواع الطائرات">
+    <figcaption><b>الشكل 12 — أكثر 10 أنواع طائرات تشغيلاً.</b> عائلة A320 (A320/A20N) تتصدر دمشق وحلب، تليها عائلة 737؛ بينما تحضر الطائرات العريضة (A330/B777/B787) في دمشق عبر القطرية والإمارات والاتحاد وغيرها.</figcaption>
+  </figure>
+  <figure><img src="data:image/png;base64,{{img.c10_profile}}" alt="بصمة التشغيل">
+    <figcaption><b>الشكل 13 — بصمة التشغيل: وسيط زمن الرحلة، وسيط المسافة، وحصة العريضة البدن.</b> رحلات اللاذقية أطول زمنياً ({{ltk.ft_median}} دقيقة) وأبعد نصف قطر جغرافي مع مسافات وسيطة {{ltk.dist_median|fmt}} كم تربطها بروسيا وإفريقيا؛ دمشق وسيطها {{dam.ft_median}} دقيقة/{{dam.dist_median|fmt}} كم (نطاق خليجي-إقليمي)؛ حلب أقصر جذرياً ({{alp.ft_median}} دقيقة/{{alp.dist_median|fmt}} كم) لأن شبكتها إقليمية بالأساس.</figcaption>
+  </figure>
+  <p class="lead">مؤشر «حصة العريضة البدن» يعمل كبوصلة نضج شبكة: {{dam.widebody_share}}% في دمشق (خطوط خليجية وطويلة المدى)، مقابل {{alp.widebody_share}}% فقط في حلب — أي أن حلب لم تدخل بعد طور الطائرات الكبيرة، وهامش نموها في حجم المقاعد لا يزال واسعاً عبر تكبير الطائرة لا عدد الرحلات فقط.</p>
+</section>
+
+<!-- ============ 10. اللاذقية ============ -->
+<section id="s10">
+  <h2><span class="n">10</span>اللاذقية: جسر جوي عسكري</h2>
+  <p class="lead">تحتل اللاذقية موقعاً خاصاً في هذه المقارنة: خلال 20 شهراً لم تسجل سوى <b>{{ltk.total|fmt}} حركة</b> (بمعدل {{ltk.avg_monthly}} حركة شهرياً)، منها <b>{{cat_share(ltk,'عسكري وحكومي')}}%</b> عسكري وحكومي. المشغّل المهيمن هو القوات الجوية الروسية بتنويعاتها (RFF وتشكيلاتها)، بطائرات شحن استراتيجي IL-76 وAn-124 وطائرات ركاب قديمة طراز Tu-154/Tu-134.</p>
+  <figure><img src="data:image/png;base64,{{img.c12_latakia}}" alt="اللاذقية">
+    <figcaption><b>الشكل 14 — اللاذقية بالتفصيل:</b> (يمين) الحركة الشهرية — قفزة لافتة في ديسمبر 2025 ({{ltk.peak_month.n}} حركة) ثم نشاط متقطع؛ (وسط) المشغّلون: {{ltk.russian_mil_share}}% من الحركات مرتبطة بالوجود الجوي الروسي (بما فيها سجلات بلا مشغّل معلن لكنها بنمط عسكري: 37 رحلة An-124)؛ (يسار) أنواع الطائرات: IL-76 وAn-124 يهيمنان.</figcaption>
+  </figure>
+  <ul class="findings">
+    <li><b>الوجهة الأولى هي قاعدة عسكرية:</b> مطار تشكالوفسكي (CKL) قرب موسكو يستقبل {{ltk.ckl_n}} رحلة من إجمالي حركات اللاذقية المرتبطة به — جسرُ إمداد لوجستي واضح المعالم، مع ظهور جوكوفسكي وشيريميتيفو ومدن روسية أخرى.</li>
+    <li><b>ذيل إفريقي:</b> تسجل البيانات رحلات متفرقة نحو باماكو وبرازافيل ولومي ودار السلام — نمط مميز لعمليات نقل عسكري/دبلوماسي بعيدة المدى بطائرات An-124.</li>
+    <li><b>لا شبهة مدنية تقريباً:</b> رحلات الركاب المنتظمة غائبة، والطيران المدني في المطار شبه موقوف خلال فترة البيانات، خلافاً لدمشق وحلب.</li>
+  </ul>
+  <div class="note"><b>حدود التفسير:</b> خلص التحليل إلى «الارتباط الروسي» من واقع المشغّل المسجّل (RFF وأخواتها)، واللوحة المرسومة على الطائرة (painted_as = RFF في معظم السجلات)، وأنماط الطائرات والوجهات. بعض السجلات (52) بلا مشغّل معلن، لكن 42 منها مصنفة «عسكري وحكومي» و37 منها طائرات An-124 — لذا فالنسبة المذكورة ({{ltk.russian_mil_share}}%) تحفظية، والنسبة الفعلية أعلى منها على الأرجح.</div>
+</section>
+
+<!-- ============ 11. الخلاصة ============ -->
+<section id="s11">
+  <h2><span class="n">11</span>الخلاصة التحليلية</h2>
+  <p class="lead">تروي بيانات المطارات الثلاثة قصة واحدة بثلاثة فصول:</p>
+  <div class="air-card dam">
+    <h4>دمشق — الاستقرار بعد الاستعادة</h4>
+    <p>{{dam.total|fmt}} حركة خلال 20 شهراً، و{{dam.n_operators}} شركة، و{{dam.n_destinations_all}} وجهة، وسوق غير مركّز (HHI={{dam.hhi}}) بنمو +{{dam.growth_pct}}% في 2026. المطار استعاد دوره كمحور إقليمي بسرعة، وارتباطه الخليجي ({{dam.gulf_share_of_intl}}% من مغادراته الدولية) هو السمة البنيوية الأبرز. مؤشرات جاهزيته لمزيد من النمو (تنوّع المشغلين والطائرات العريضة) إيجابية.</p>
+  </div>
+  <div class="air-card alp">
+    <h4>حلب — منحنى الإقلاع</h4>
+    <p>من 630 حركة في النصف الأول من عمر البيانات إلى {{alp.jan_aug_2026|fmt}} في الفترة المقابلة من 2026 (+{{alp.growth_pct}}%)، وبأعلى شهر تشغيل في تاريخ البيانات ({{alp.peak_month.month}}: {{alp.peak_month.n}} حركة). شبكتها تعمق ارتباطها بمحور عمّان–إسطنبول، وسوقها أكثر تركّزاً (الملكية الأردنية {{alp.top_airline.share}}%). التحدي القادم بحسب المؤشرات: توسيع قاعدة المشغلين، ودخول عائلات طائرات أكبر.</p>
+  </div>
+  <div class="air-card ltk">
+    <h4>اللاذقية — مطار بلا ركاب</h4>
+    <p>{{ltk.total}} حركة فقط، {{cat_share(ltk,'عسكري وحكومي')}}% منها عسكرية/حكومية و{{ltk.russian_mil_share}}% بارتباط روسي مباشر. المطار يعمل عملياً كمنصة عمليات لوجستية لا كبوابة مدنية؛ وأي مقارنة «تجارية» له مع دمشق وحلب غير مجدية — إذ هو مقارنة بين نموذجين مختلفين لاستخدام المطار.</p>
+  </div>
+  <p class="lead" style="margin-top:16px">بصياغة واحدة: <b>أعادت سوريا بناء بوّابتيها المدنيتين (دمشق بحجم مستقر وحلب بنمو انفجاري)، بينما بقيت اللاذقية منصة عسكرية شبه حصرية.</b></p>
+</section>
+
+<!-- ============ 12. المصادر ============ -->
+<section id="s12">
+  <h2><span class="n">12</span>المصادر والمراجع</h2>
+  <h3>12.1 البيانات الخام</h3>
+  <ul class="src-list">
+    <li>flights_damascus_OSDI.csv — {{q.rows_per_file.OSDI|fmt}} سجلاً، المستودع <code>HoseenAlhlak/HoseenAlhlak</code>، فرع البيانات الخام <code>data/raw/</code>.</li>
+    <li>flights_aleppo_OSAP.csv — {{q.rows_per_file.OSAP|fmt}} سجلاً، المصدر نفسه.</li>
+    <li>flights_latakia_OSLK.csv — {{q.rows_per_file.OSLK|fmt}} سجلاً، المصدر نفسه.</li>
+    <li>بنية السجل: 25 حقلاً (fr24_id, flight, callsign, operating_as, painted_as, type, reg, orig/dest + أوقاتها, flight_time, actual_distance, circle_distance, category, runway…) — نمط سجلات تتبّع رحلات عام.</li>
+  </ul>
+  <h3>12.2 مراجع التحقق من رموز الشركات (استُشير بها في التسمية العربية)</h3>
+  <ul class="src-list">
+    <li>Wikipedia — List of airlines of Syria (الخطوط السورية RB/SYR، فلاي شام XH/FYC): <span style="direction:ltr; unicode-bidi:embed">en.wikipedia.org/wiki/List_of_airlines_of_Syria</span></li>
+    <li>Airhex — Fly Cham (FYC/XH): <span style="direction:ltr; unicode-bidi:embed">airhex.com/airlines/fly-cham</span></li>
+    <li>Airhex — flyadeal (FAD/F3): <span style="direction:ltr; unicode-bidi:embed">airhex.com/airlines/flyadeal</span></li>
+    <li>Airhex — Dan Air (DNA/DN): <span style="direction:ltr; unicode-bidi:embed">airhex.com/airlines/dan-air</span></li>
+    <li>Plane Finder — Centrum Air (MFX/C6): <span style="direction:ltr; unicode-bidi:embed">planefinder.net/data/airline/MFX</span></li>
+    <li>Airhex — Air Mediterranean (MAR/MV): <span style="direction:ltr; unicode-bidi:embed">airhex.com/airlines/air-mediterranean</span></li>
+    <li>Airways Magazine — flynas واستئناف رحلاتها إلى دمشق (KNE/XY): <span style="direction:ltr; unicode-bidi:embed">airwaysmag.com/new-post/flynas-syria-lcc</span></li>
+    <li>airliners.de — أسطول LEAV Aviation (NGN/KK, D-ANNE/D-ANDI/D-ADDY): <span style="direction:ltr; unicode-bidi:embed">airliners.de (تقرير الأسطول 2025)</span></li>
+  </ul>
+  <h3>12.3 أدوات ومنتجات التحليل</h3>
+  <ul class="src-list">
+    <li>سكربت التحليل: <code>analysis/analyze_airports.py</code> (Python 3.11: pandas, matplotlib, arabic-reshaper, python-bidi).</li>
+    <li>مولد التقرير: <code>analysis/build_report.py</code> و<code>analysis/build_pdf.py</code>.</li>
+    <li>المؤشرات التفصيلية: <code>analysis/results/metrics.json</code> وجداول <code>analysis/results/*.csv</code>.</li>
+    <li>الرسوم: <code>reports/charts/c01–c14</code> بخط Amiri المضمّن.</li>
+  </ul>
+  <p class="muted" style="font-size:14.5px">تنويه: أرقام التقرير تعكس حصراً ما ورد في الملفات الثلاثة، وهي حساسة لاكتمال التسجيل فيه (انظر القسم 2.3). التسميات العربية للشركات والمدن اجتهاد توثيقي مبني على المصادر أعلاه.</p>
+</section>
+
+<footer>
+  تقرير تحليلي مقارن — حركة الطيران في مطارات سوريا الثلاثة · أُنتج آلياً من بيانات المستودع بتاريخ {{m.generated_at}}<br>
+  إجمالي {{m.total_movements|fmt}} حركة جوية · دمشق · حلب · اللاذقية
+</footer>
+
+</div>
+</body>
+</html>

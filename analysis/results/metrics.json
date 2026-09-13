@@ -1,0 +1,1606 @@
+{
+ "meta": {
+  "generated_at": "2026-09-13 19:41",
+  "data_first": "2025-01-01",
+  "data_last": "2026-09-07",
+  "total_movements": 25063,
+  "n_airports": 3,
+  "unique_operators": 63,
+  "unique_aircraft": 608,
+  "unique_types": 71,
+  "unique_destinations": 103
+ },
+ "airports": {
+  "OSDI": {
+   "icao": "OSDI",
+   "iata": "DAM",
+   "name_ar": "مطار دمشق الدولي",
+   "city": "دمشق",
+   "short": "دمشق",
+   "note": "البوابة الجوية الرئيسية لسوريا ومركز الخطوط السورية وفلاي شام",
+   "total": 19743,
+   "departures": 9888,
+   "arrivals": 9678,
+   "unclassified": 177,
+   "first_event": "2025-01-01",
+   "last_event": "2026-09-06",
+   "categories": [
+    {
+     "name": "رحلات ركاب",
+     "n": 18683,
+     "share": 94.6
+    },
+    {
+     "name": "طيران أعمال",
+     "n": 448,
+     "share": 2.3
+    },
+    {
+     "name": "غير مصنّف",
+     "n": 316,
+     "share": 1.6
+    },
+    {
+     "name": "عسكري وحكومي",
+     "n": 153,
+     "share": 0.8
+    },
+    {
+     "name": "شحن جوي",
+     "n": 130,
+     "share": 0.7
+    },
+    {
+     "name": "خدمات أخرى",
+     "n": 9,
+     "share": 0.0
+    },
+    {
+     "name": "طيران عام",
+     "n": 4,
+     "share": 0.0
+    }
+   ],
+   "monthly": [
+    {
+     "month": "2025-01",
+     "n": 370,
+     "gap": false
+    },
+    {
+     "month": "2025-02",
+     "n": 453,
+     "gap": false
+    },
+    {
+     "month": "2025-03",
+     "n": 522,
+     "gap": false
+    },
+    {
+     "month": "2025-04",
+     "n": 602,
+     "gap": false
+    },
+    {
+     "month": "2025-05",
+     "n": 798,
+     "gap": false
+    },
+    {
+     "month": "2025-06",
+     "n": 711,
+     "gap": false
+    },
+    {
+     "month": "2025-07",
+     "n": 1352,
+     "gap": false
+    },
+    {
+     "month": "2025-08",
+     "n": 1385,
+     "gap": false
+    },
+    {
+     "month": "2025-09",
+     "n": 1210,
+     "gap": false
+    },
+    {
+     "month": "2025-10",
+     "n": 1346,
+     "gap": false
+    },
+    {
+     "month": "2025-11",
+     "n": 1268,
+     "gap": false
+    },
+    {
+     "month": "2025-12",
+     "n": 1329,
+     "gap": false
+    },
+    {
+     "month": "2026-01",
+     "n": 1349,
+     "gap": false
+    },
+    {
+     "month": "2026-02",
+     "n": 1118,
+     "gap": false
+    },
+    {
+     "month": "2026-03",
+     "n": 11,
+     "gap": true
+    },
+    {
+     "month": "2026-04",
+     "n": 395,
+     "gap": false
+    },
+    {
+     "month": "2026-05",
+     "n": 1252,
+     "gap": false
+    },
+    {
+     "month": "2026-06",
+     "n": 1272,
+     "gap": false
+    },
+    {
+     "month": "2026-07",
+     "n": 1408,
+     "gap": false
+    },
+    {
+     "month": "2026-08",
+     "n": 1292,
+     "gap": false
+    },
+    {
+     "month": "2026-09",
+     "n": 300,
+     "gap": true
+    }
+   ],
+   "gap_months": [
+    "2026-03",
+    "2026-09"
+   ],
+   "peak_month": {
+    "month": "2026-07",
+    "n": 1408
+   },
+   "avg_monthly": 1022.7,
+   "avg_daily_last_full_month": 41.7,
+   "last_full_month": "2026-08",
+   "jan_aug_2025": 6193,
+   "jan_aug_2026": 8097,
+   "growth_pct": 30.7,
+   "n_operators": 60,
+   "hhi": 881,
+   "top3_share": 39.9,
+   "top_airlines": [
+    {
+     "code": "SYR",
+     "name": "الخطوط الجوية السورية",
+     "iata": "RB",
+     "country": "سوريا",
+     "n": 3166,
+     "share": 16.0
+    },
+    {
+     "code": "FYC",
+     "name": "فلاي شام",
+     "iata": "XH",
+     "country": "سوريا (تأسست 2025)",
+     "n": 3027,
+     "share": 15.3
+    },
+    {
+     "code": "RJA",
+     "name": "الملكية الأردنية",
+     "iata": "RJ",
+     "country": "الأردن",
+     "n": 1678,
+     "share": 8.5
+    },
+    {
+     "code": "KNE",
+     "name": "فلاي ناس",
+     "iata": "XY",
+     "country": "السعودية",
+     "n": 1564,
+     "share": 7.9
+    },
+    {
+     "code": "ABY",
+     "name": "العربية للطيران",
+     "iata": "G9",
+     "country": "الإمارات",
+     "n": 1352,
+     "share": 6.8
+    },
+    {
+     "code": "FDB",
+     "name": "فلاي دبي",
+     "iata": "FZ",
+     "country": "الإمارات",
+     "n": 1334,
+     "share": 6.8
+    },
+    {
+     "code": "SAW",
+     "name": "أجنحة الشام",
+     "iata": "6Q",
+     "country": "سوريا",
+     "n": 1329,
+     "share": 6.7
+    },
+    {
+     "code": "QTR",
+     "name": "الخطوط القطرية",
+     "iata": "QR",
+     "country": "قطر",
+     "n": 1207,
+     "share": 6.1
+    },
+    {
+     "code": "THY",
+     "name": "الخطوط التركية",
+     "iata": "TK",
+     "country": "تركيا",
+     "n": 1035,
+     "share": 5.2
+    },
+    {
+     "code": "JZR",
+     "name": "الجزيرة الكويتية",
+     "iata": "J9",
+     "country": "الكويت",
+     "n": 900,
+     "share": 4.6
+    },
+    {
+     "code": "TKJ",
+     "name": "إيه جت (AJet)",
+     "iata": "VF",
+     "country": "تركيا",
+     "n": 768,
+     "share": 3.9
+    },
+    {
+     "code": "FAD",
+     "name": "فلاي ديل",
+     "iata": "F3",
+     "country": "السعودية",
+     "n": 514,
+     "share": 2.6
+    }
+   ],
+   "top_airline": {
+    "code": "SYR",
+    "name": "الخطوط الجوية السورية",
+    "iata": "RB",
+    "country": "سوريا",
+    "n": 3166,
+    "share": 16.0
+   },
+   "top_destinations": [
+    {
+     "iata": "KWI",
+     "city": "الكويت",
+     "n": 1418
+    },
+    {
+     "iata": "DXB",
+     "city": "دبي",
+     "n": 1193
+    },
+    {
+     "iata": "SHJ",
+     "city": "الشارقة",
+     "n": 1141
+    },
+    {
+     "iata": "AMM",
+     "city": "عمّان",
+     "n": 887
+    },
+    {
+     "iata": "DOH",
+     "city": "الدوحة",
+     "n": 760
+    },
+    {
+     "iata": "RUH",
+     "city": "الرياض",
+     "n": 740
+    },
+    {
+     "iata": "IST",
+     "city": "إسطنبول",
+     "n": 730
+    },
+    {
+     "iata": "JED",
+     "city": "جدة",
+     "n": 646
+    },
+    {
+     "iata": "SAW",
+     "city": "إسطنبول (صبيحة)",
+     "n": 382
+    },
+    {
+     "iata": "AUH",
+     "city": "أبوظبي",
+     "n": 334
+    },
+    {
+     "iata": "BGW",
+     "city": "بغداد",
+     "n": 217
+    },
+    {
+     "iata": "EBL",
+     "city": "أربيل",
+     "n": 213
+    }
+   ],
+   "top_origins": [
+    {
+     "iata": "KWI",
+     "city": "الكويت",
+     "n": 1384
+    },
+    {
+     "iata": "DXB",
+     "city": "دبي",
+     "n": 1210
+    },
+    {
+     "iata": "SHJ",
+     "city": "الشارقة",
+     "n": 1144
+    },
+    {
+     "iata": "AMM",
+     "city": "عمّان",
+     "n": 869
+    },
+    {
+     "iata": "DOH",
+     "city": "الدوحة",
+     "n": 765
+    },
+    {
+     "iata": "IST",
+     "city": "إسطنبول",
+     "n": 759
+    },
+    {
+     "iata": "RUH",
+     "city": "الرياض",
+     "n": 754
+    },
+    {
+     "iata": "JED",
+     "city": "جدة",
+     "n": 585
+    },
+    {
+     "iata": "SAW",
+     "city": "إسطنبول (صبيحة)",
+     "n": 419
+    },
+    {
+     "iata": "AUH",
+     "city": "أبوظبي",
+     "n": 323
+    },
+    {
+     "iata": "BGW",
+     "city": "بغداد",
+     "n": 199
+    },
+    {
+     "iata": "EBL",
+     "city": "أربيل",
+     "n": 193
+    }
+   ],
+   "n_destinations_all": 95,
+   "n_destinations_intl": 76,
+   "domestic_dep": 75,
+   "intl_dep": 9797,
+   "local_ops": 16,
+   "gulf_dep": 6695,
+   "gulf_share_of_intl": 68.3,
+   "n_types": 64,
+   "n_aircraft": 546,
+   "widebody_n": 1950,
+   "widebody_share": 9.9,
+   "top_types": [
+    {
+     "type": "A320",
+     "n": 9647
+    },
+    {
+     "type": "A20N",
+     "n": 3120
+    },
+    {
+     "type": "B38M",
+     "n": 1205
+    },
+    {
+     "type": "A333",
+     "n": 1048
+    },
+    {
+     "type": "B738",
+     "n": 903
+    },
+    {
+     "type": "B735",
+     "n": 666
+    },
+    {
+     "type": "A332",
+     "n": 650
+    },
+    {
+     "type": "B739",
+     "n": 484
+    },
+    {
+     "type": "E295",
+     "n": 239
+    },
+    {
+     "type": "E290",
+     "n": 170
+    }
+   ],
+   "hourly": [
+    158,
+    192,
+    161,
+    406,
+    293,
+    448,
+    1016,
+    1357,
+    1352,
+    1511,
+    1570,
+    1039,
+    1303,
+    1675,
+    1682,
+    874,
+    827,
+    1343,
+    892,
+    540,
+    391,
+    355,
+    163,
+    195
+   ],
+   "peak_hour": 14,
+   "dow_counts": [
+    2105,
+    1181,
+    3203,
+    3607,
+    3374,
+    3333,
+    2940
+   ],
+   "dow_ar_counts": [
+    {
+     "day": "الاثنين",
+     "n": 2105
+    },
+    {
+     "day": "الثلاثاء",
+     "n": 1181
+    },
+    {
+     "day": "الأربعاء",
+     "n": 3203
+    },
+    {
+     "day": "الخميس",
+     "n": 3607
+    },
+    {
+     "day": "الجمعة",
+     "n": 3374
+    },
+    {
+     "day": "السبت",
+     "n": 3333
+    },
+    {
+     "day": "الأحد",
+     "n": 2940
+    }
+   ],
+   "busiest_day": {
+    "date": "2026-08-13",
+    "n": 81
+   },
+   "ft_median": 121.0,
+   "ft_mean": 125.0,
+   "dist_median": 1485.0,
+   "dist_mean": 1612.0,
+   "ft_n": 16928,
+   "runways": {
+    "23R": 2960,
+    "23L": 2002,
+    "30": 1744,
+    "33L": 1478,
+    "33R": 1438,
+    "34L": 1344,
+    "26L": 1013,
+    "30R": 942
+   }
+  },
+  "OSAP": {
+   "icao": "OSAP",
+   "iata": "ALP",
+   "name_ar": "مطار حلب الدولي",
+   "city": "حلب",
+   "short": "حلب",
+   "note": "بوابة الشمال؛ شهد أسرع وتيرة نمو بعد استئناف التشغيل",
+   "total": 5068,
+   "departures": 2589,
+   "arrivals": 2468,
+   "unclassified": 11,
+   "first_event": "2025-01-10",
+   "last_event": "2026-09-07",
+   "categories": [
+    {
+     "name": "رحلات ركاب",
+     "n": 4834,
+     "share": 95.4
+    },
+    {
+     "name": "طيران أعمال",
+     "n": 120,
+     "share": 2.4
+    },
+    {
+     "name": "غير مصنّف",
+     "n": 78,
+     "share": 1.5
+    },
+    {
+     "name": "عسكري وحكومي",
+     "n": 26,
+     "share": 0.5
+    },
+    {
+     "name": "خدمات أخرى",
+     "n": 10,
+     "share": 0.2
+    }
+   ],
+   "monthly": [
+    {
+     "month": "2025-01",
+     "n": 1,
+     "gap": true
+    },
+    {
+     "month": "2025-03",
+     "n": 10,
+     "gap": true
+    },
+    {
+     "month": "2025-04",
+     "n": 25,
+     "gap": true
+    },
+    {
+     "month": "2025-05",
+     "n": 57,
+     "gap": false
+    },
+    {
+     "month": "2025-06",
+     "n": 109,
+     "gap": false
+    },
+    {
+     "month": "2025-07",
+     "n": 138,
+     "gap": false
+    },
+    {
+     "month": "2025-08",
+     "n": 290,
+     "gap": false
+    },
+    {
+     "month": "2025-09",
+     "n": 341,
+     "gap": false
+    },
+    {
+     "month": "2025-10",
+     "n": 362,
+     "gap": false
+    },
+    {
+     "month": "2025-11",
+     "n": 374,
+     "gap": false
+    },
+    {
+     "month": "2025-12",
+     "n": 314,
+     "gap": false
+    },
+    {
+     "month": "2026-01",
+     "n": 133,
+     "gap": false
+    },
+    {
+     "month": "2026-02",
+     "n": 194,
+     "gap": false
+    },
+    {
+     "month": "2026-03",
+     "n": 208,
+     "gap": false
+    },
+    {
+     "month": "2026-04",
+     "n": 228,
+     "gap": false
+    },
+    {
+     "month": "2026-05",
+     "n": 366,
+     "gap": false
+    },
+    {
+     "month": "2026-06",
+     "n": 463,
+     "gap": false
+    },
+    {
+     "month": "2026-07",
+     "n": 600,
+     "gap": false
+    },
+    {
+     "month": "2026-08",
+     "n": 694,
+     "gap": false
+    },
+    {
+     "month": "2026-09",
+     "n": 161,
+     "gap": false
+    }
+   ],
+   "gap_months": [
+    "2025-01",
+    "2025-03",
+    "2025-04"
+   ],
+   "peak_month": {
+    "month": "2026-08",
+    "n": 694
+   },
+   "avg_monthly": 296.0,
+   "avg_daily_last_full_month": 22.4,
+   "last_full_month": "2026-08",
+   "jan_aug_2025": 630,
+   "jan_aug_2026": 2886,
+   "growth_pct": 358.1,
+   "n_operators": 23,
+   "hhi": 1433,
+   "top3_share": 55.8,
+   "top_airlines": [
+    {
+     "code": "RJA",
+     "name": "الملكية الأردنية",
+     "iata": "RJ",
+     "country": "الأردن",
+     "n": 1407,
+     "share": 27.8
+    },
+    {
+     "code": "THY",
+     "name": "الخطوط التركية",
+     "iata": "TK",
+     "country": "تركيا",
+     "n": 733,
+     "share": 14.5
+    },
+    {
+     "code": "FYC",
+     "name": "فلاي شام",
+     "iata": "XH",
+     "country": "سوريا (تأسست 2025)",
+     "n": 687,
+     "share": 13.6
+    },
+    {
+     "code": "TKJ",
+     "name": "إيه جت (AJet)",
+     "iata": "VF",
+     "country": "تركيا",
+     "n": 595,
+     "share": 11.7
+    },
+    {
+     "code": "SYR",
+     "name": "الخطوط الجوية السورية",
+     "iata": "RB",
+     "country": "سوريا",
+     "n": 463,
+     "share": 9.1
+    },
+    {
+     "code": "PGT",
+     "name": "بيغاسوس",
+     "iata": "PC",
+     "country": "تركيا",
+     "n": 177,
+     "share": 3.5
+    },
+    {
+     "code": "QTR",
+     "name": "الخطوط القطرية",
+     "iata": "QR",
+     "country": "قطر",
+     "n": 142,
+     "share": 2.8
+    },
+    {
+     "code": "ABY",
+     "name": "العربية للطيران",
+     "iata": "G9",
+     "country": "الإمارات",
+     "n": 137,
+     "share": 2.7
+    },
+    {
+     "code": "IGC",
+     "name": "آي جي سي (تشغيل خاص CRJ-200)",
+     "iata": "—",
+     "country": "سوريا",
+     "n": 108,
+     "share": 2.1
+    },
+    {
+     "code": "SAW",
+     "name": "أجنحة الشام",
+     "iata": "6Q",
+     "country": "سوريا",
+     "n": 107,
+     "share": 2.1
+    },
+    {
+     "code": "FDB",
+     "name": "فلاي دبي",
+     "iata": "FZ",
+     "country": "الإمارات",
+     "n": 88,
+     "share": 1.7
+    },
+    {
+     "code": "TAH",
+     "name": "مشغّل آخر (TAH)",
+     "iata": "—",
+     "country": "—",
+     "n": 61,
+     "share": 1.2
+    }
+   ],
+   "top_airline": {
+    "code": "RJA",
+    "name": "الملكية الأردنية",
+    "iata": "RJ",
+    "country": "الأردن",
+    "n": 1407,
+    "share": 27.8
+   },
+   "top_destinations": [
+    {
+     "iata": "AMM",
+     "city": "عمّان",
+     "n": 700
+    },
+    {
+     "iata": "SAW",
+     "city": "إسطنبول (صبيحة)",
+     "n": 450
+    },
+    {
+     "iata": "IST",
+     "city": "إسطنبول",
+     "n": 449
+    },
+    {
+     "iata": "SHJ",
+     "city": "الشارقة",
+     "n": 201
+    },
+    {
+     "iata": "DXB",
+     "city": "دبي",
+     "n": 98
+    },
+    {
+     "iata": "JED",
+     "city": "جدة",
+     "n": 96
+    },
+    {
+     "iata": "DOH",
+     "city": "الدوحة",
+     "n": 80
+    },
+    {
+     "iata": "DAM",
+     "city": "دمشق",
+     "n": 72
+    },
+    {
+     "iata": "KWI",
+     "city": "الكويت",
+     "n": 57
+    },
+    {
+     "iata": "RUH",
+     "city": "الرياض",
+     "n": 54
+    },
+    {
+     "iata": "EBL",
+     "city": "أربيل",
+     "n": 46
+    },
+    {
+     "iata": "DWC",
+     "city": "دبي (آل مكتوم)",
+     "n": 39
+    }
+   ],
+   "top_origins": [
+    {
+     "iata": "AMM",
+     "city": "عمّان",
+     "n": 708
+    },
+    {
+     "iata": "SAW",
+     "city": "إسطنبول (صبيحة)",
+     "n": 456
+    },
+    {
+     "iata": "IST",
+     "city": "إسطنبول",
+     "n": 450
+    },
+    {
+     "iata": "SHJ",
+     "city": "الشارقة",
+     "n": 183
+    },
+    {
+     "iata": "DAM",
+     "city": "دمشق",
+     "n": 86
+    },
+    {
+     "iata": "DOH",
+     "city": "الدوحة",
+     "n": 78
+    },
+    {
+     "iata": "DXB",
+     "city": "دبي",
+     "n": 69
+    },
+    {
+     "iata": "DWC",
+     "city": "دبي (آل مكتوم)",
+     "n": 60
+    },
+    {
+     "iata": "KWI",
+     "city": "الكويت",
+     "n": 54
+    },
+    {
+     "iata": "EBL",
+     "city": "أربيل",
+     "n": 50
+    },
+    {
+     "iata": "JED",
+     "city": "جدة",
+     "n": 49
+    },
+    {
+     "iata": "RUH",
+     "city": "الرياض",
+     "n": 46
+    }
+   ],
+   "n_destinations_all": 26,
+   "n_destinations_intl": 23,
+   "domestic_dep": 72,
+   "intl_dep": 2515,
+   "local_ops": 2,
+   "gulf_dep": 681,
+   "gulf_share_of_intl": 27.1,
+   "n_types": 22,
+   "n_aircraft": 216,
+   "widebody_n": 187,
+   "widebody_share": 3.7,
+   "top_types": [
+    {
+     "type": "A320",
+     "n": 1515
+    },
+    {
+     "type": "B738",
+     "n": 866
+    },
+    {
+     "type": "B739",
+     "n": 709
+    },
+    {
+     "type": "A20N",
+     "n": 697
+    },
+    {
+     "type": "E295",
+     "n": 311
+    },
+    {
+     "type": "E290",
+     "n": 304
+    },
+    {
+     "type": "B735",
+     "n": 146
+    },
+    {
+     "type": "A332",
+     "n": 119
+    },
+    {
+     "type": "CRJ2",
+     "n": 111
+    },
+    {
+     "type": "A321",
+     "n": 91
+    }
+   ],
+   "hourly": [
+    56,
+    56,
+    48,
+    75,
+    296,
+    303,
+    413,
+    542,
+    416,
+    438,
+    371,
+    355,
+    464,
+    262,
+    222,
+    113,
+    193,
+    151,
+    55,
+    35,
+    78,
+    41,
+    37,
+    48
+   ],
+   "peak_hour": 7,
+   "dow_counts": [
+    793,
+    800,
+    680,
+    727,
+    660,
+    728,
+    680
+   ],
+   "dow_ar_counts": [
+    {
+     "day": "الاثنين",
+     "n": 793
+    },
+    {
+     "day": "الثلاثاء",
+     "n": 800
+    },
+    {
+     "day": "الأربعاء",
+     "n": 680
+    },
+    {
+     "day": "الخميس",
+     "n": 727
+    },
+    {
+     "day": "الجمعة",
+     "n": 660
+    },
+    {
+     "day": "السبت",
+     "n": 728
+    },
+    {
+     "day": "الأحد",
+     "n": 680
+    }
+   ],
+   "busiest_day": {
+    "date": "2026-09-01",
+    "n": 28
+   },
+   "ft_median": 90.0,
+   "ft_mean": 104.0,
+   "dist_median": 1026.0,
+   "dist_mean": 1256.0,
+   "ft_n": 3339,
+   "runways": {
+    "26L": 795,
+    "09L": 406,
+    "06L": 369,
+    "26R": 358,
+    "06R": 332,
+    "27R": 329,
+    "35R": 324,
+    "34L": 320
+   }
+  },
+  "OSLK": {
+   "icao": "OSLK",
+   "iata": "LTK",
+   "name_ar": "مطار باسل الأسد الدولي (اللاذقية)",
+   "city": "اللاذقية",
+   "short": "اللاذقية",
+   "note": "حركة شبه حصرية لعمليات عسكرية/حكومية (القوات الجوية الروسية أساساً)",
+   "total": 252,
+   "departures": 153,
+   "arrivals": 97,
+   "unclassified": 2,
+   "first_event": "2025-01-14",
+   "last_event": "2026-09-06",
+   "categories": [
+    {
+     "name": "عسكري وحكومي",
+     "n": 242,
+     "share": 96.0
+    },
+    {
+     "name": "غير مصنّف",
+     "n": 6,
+     "share": 2.4
+    },
+    {
+     "name": "مروحيات",
+     "n": 1,
+     "share": 0.4
+    },
+    {
+     "name": "طائرات شراعية",
+     "n": 1,
+     "share": 0.4
+    },
+    {
+     "name": "طيران عام",
+     "n": 1,
+     "share": 0.4
+    },
+    {
+     "name": "شحن جوي",
+     "n": 1,
+     "share": 0.4
+    }
+   ],
+   "monthly": [
+    {
+     "month": "2025-01",
+     "n": 4,
+     "gap": false
+    },
+    {
+     "month": "2025-03",
+     "n": 7,
+     "gap": false
+    },
+    {
+     "month": "2025-04",
+     "n": 7,
+     "gap": false
+    },
+    {
+     "month": "2025-05",
+     "n": 6,
+     "gap": false
+    },
+    {
+     "month": "2025-06",
+     "n": 5,
+     "gap": false
+    },
+    {
+     "month": "2025-07",
+     "n": 6,
+     "gap": false
+    },
+    {
+     "month": "2025-08",
+     "n": 2,
+     "gap": false
+    },
+    {
+     "month": "2025-09",
+     "n": 13,
+     "gap": false
+    },
+    {
+     "month": "2025-10",
+     "n": 15,
+     "gap": false
+    },
+    {
+     "month": "2025-11",
+     "n": 21,
+     "gap": false
+    },
+    {
+     "month": "2025-12",
+     "n": 37,
+     "gap": false
+    },
+    {
+     "month": "2026-01",
+     "n": 6,
+     "gap": false
+    },
+    {
+     "month": "2026-02",
+     "n": 14,
+     "gap": false
+    },
+    {
+     "month": "2026-04",
+     "n": 8,
+     "gap": false
+    },
+    {
+     "month": "2026-05",
+     "n": 16,
+     "gap": false
+    },
+    {
+     "month": "2026-06",
+     "n": 25,
+     "gap": false
+    },
+    {
+     "month": "2026-07",
+     "n": 31,
+     "gap": false
+    },
+    {
+     "month": "2026-08",
+     "n": 24,
+     "gap": false
+    },
+    {
+     "month": "2026-09",
+     "n": 5,
+     "gap": false
+    }
+   ],
+   "gap_months": [],
+   "peak_month": {
+    "month": "2025-12",
+    "n": 37
+   },
+   "avg_monthly": 13.3,
+   "avg_daily_last_full_month": 0.8,
+   "last_full_month": "2026-08",
+   "jan_aug_2025": 37,
+   "jan_aug_2026": 124,
+   "growth_pct": 235.1,
+   "n_operators": 5,
+   "hhi": 4043,
+   "top3_share": 89.7,
+   "top_airlines": [
+    {
+     "code": "RFF",
+     "name": "القوات الجوية الروسية (نقل عسكري)",
+     "iata": "—",
+     "country": "روسيا",
+     "n": 148,
+     "share": 58.7
+    },
+    {
+     "code": "غير معروف",
+     "name": "غير محدد المشغّل",
+     "iata": "—",
+     "country": "—",
+     "n": 52,
+     "share": 20.6
+    },
+    {
+     "code": "TTF",
+     "name": "القوات الجوية الروسية — تشكيل TTF",
+     "iata": "—",
+     "country": "روسيا",
+     "n": 26,
+     "share": 10.3
+    },
+    {
+     "code": "CHD",
+     "name": "القوات الجوية الروسية — تشكيل CHD",
+     "iata": "—",
+     "country": "روسيا",
+     "n": 18,
+     "share": 7.1
+    },
+    {
+     "code": "RSD",
+     "name": "القوات الجوية الروسية — تشكيل RSD",
+     "iata": "—",
+     "country": "روسيا",
+     "n": 8,
+     "share": 3.2
+    }
+   ],
+   "top_airline": {
+    "code": "RFF",
+    "name": "القوات الجوية الروسية (نقل عسكري)",
+    "iata": "—",
+    "country": "روسيا",
+    "n": 148,
+    "share": 58.7
+   },
+   "top_destinations": [
+    {
+     "iata": "CKL",
+     "city": "تشكالوفسكي (قاعدة عسكرية، روسيا)",
+     "n": 17
+    },
+    {
+     "iata": "ZIA",
+     "city": "جوكوفسكي (روسيا)",
+     "n": 3
+    },
+    {
+     "iata": "BKO",
+     "city": "باماكو",
+     "n": 1
+    },
+    {
+     "iata": "BZV",
+     "city": "برازافيل",
+     "n": 1
+    }
+   ],
+   "top_origins": [
+    {
+     "iata": "CKL",
+     "city": "تشكالوفسكي (قاعدة عسكرية، روسيا)",
+     "n": 35
+    },
+    {
+     "iata": "SVO",
+     "city": "موسكو (شيريميتيفو)",
+     "n": 4
+    },
+    {
+     "iata": "ADA",
+     "city": "أضنة",
+     "n": 1
+    },
+    {
+     "iata": "DAR",
+     "city": "دار السلام",
+     "n": 1
+    },
+    {
+     "iata": "SUI",
+     "city": "السويداء؟",
+     "n": 1
+    },
+    {
+     "iata": "DBB",
+     "city": "الغردقة",
+     "n": 1
+    },
+    {
+     "iata": "MRV",
+     "city": "مينيرالنيه فودي",
+     "n": 1
+    },
+    {
+     "iata": "TOB",
+     "city": "طبرق",
+     "n": 1
+    },
+    {
+     "iata": "LFW",
+     "city": "لومي",
+     "n": 1
+    },
+    {
+     "iata": "KRR",
+     "city": "كراسنودار",
+     "n": 1
+    },
+    {
+     "iata": "DAM",
+     "city": "دمشق",
+     "n": 1
+    },
+    {
+     "iata": "ZIA",
+     "city": "جوكوفسكي (روسيا)",
+     "n": 1
+    }
+   ],
+   "n_destinations_all": 14,
+   "n_destinations_intl": 4,
+   "domestic_dep": 0,
+   "intl_dep": 147,
+   "local_ops": 6,
+   "gulf_dep": 0,
+   "gulf_share_of_intl": 0.0,
+   "n_types": 12,
+   "n_aircraft": 33,
+   "widebody_n": 64,
+   "widebody_share": 25.4,
+   "top_types": [
+    {
+     "type": "IL76",
+     "n": 104
+    },
+    {
+     "type": "A124",
+     "n": 64
+    },
+    {
+     "type": "T154",
+     "n": 35
+    },
+    {
+     "type": "IL62",
+     "n": 35
+    },
+    {
+     "type": "T134",
+     "n": 6
+    },
+    {
+     "type": "GLEX",
+     "n": 2
+    },
+    {
+     "type": "AT8T",
+     "n": 1
+    },
+    {
+     "type": "A139",
+     "n": 1
+    },
+    {
+     "type": "AS50",
+     "n": 1
+    },
+    {
+     "type": "GLIM",
+     "n": 1
+    }
+   ],
+   "hourly": [
+    5,
+    7,
+    3,
+    5,
+    5,
+    7,
+    6,
+    6,
+    5,
+    17,
+    15,
+    16,
+    17,
+    10,
+    15,
+    12,
+    8,
+    20,
+    15,
+    5,
+    20,
+    13,
+    12,
+    8
+   ],
+   "peak_hour": 17,
+   "dow_counts": [
+    34,
+    25,
+    53,
+    47,
+    30,
+    30,
+    33
+   ],
+   "dow_ar_counts": [
+    {
+     "day": "الاثنين",
+     "n": 34
+    },
+    {
+     "day": "الثلاثاء",
+     "n": 25
+    },
+    {
+     "day": "الأربعاء",
+     "n": 53
+    },
+    {
+     "day": "الخميس",
+     "n": 47
+    },
+    {
+     "day": "الجمعة",
+     "n": 30
+    },
+    {
+     "day": "السبت",
+     "n": 30
+    },
+    {
+     "day": "الأحد",
+     "n": 33
+    }
+   ],
+   "busiest_day": {
+    "date": "2026-07-30",
+    "n": 5
+   },
+   "ft_median": 250.0,
+   "ft_mean": 253.0,
+   "dist_median": 1658.0,
+   "dist_mean": 2113.0,
+   "ft_n": 84,
+   "runways": {
+    "17L": 24,
+    "17R": 17,
+    "35R": 10,
+    "12R": 7,
+    "12L": 6,
+    "35L": 3,
+    "23": 3,
+    "06R": 1
+   },
+   "russian_mil_n": 235,
+   "russian_mil_share": 93.3,
+   "ckl_n": 52
+  }
+ },
+ "quality": {
+  "rows_per_file": {
+   "OSDI": 19743,
+   "OSAP": 5068,
+   "OSLK": 252
+  },
+  "columns": [
+   "fr24_id",
+   "flight",
+   "callsign",
+   "operating_as",
+   "painted_as",
+   "type",
+   "reg",
+   "orig_icao",
+   "orig_iata",
+   "datetime_takeoff",
+   "runway_takeoff",
+   "dest_icao",
+   "dest_iata",
+   "dest_icao_actual",
+   "dest_iata_actual",
+   "datetime_landed",
+   "runway_landed",
+   "flight_time",
+   "actual_distance",
+   "circle_distance",
+   "category",
+   "hex",
+   "first_seen",
+   "last_seen",
+   "flight_ended"
+  ],
+  "missing": {
+   "OSDI": {
+    "datetime_takeoff": 558,
+    "datetime_landed": 2234,
+    "flight_time": 2815,
+    "distance": 177,
+    "operator": 391,
+    "registration": 211
+   },
+   "OSAP": {
+    "datetime_takeoff": 459,
+    "datetime_landed": 1317,
+    "flight_time": 1729,
+    "distance": 11,
+    "operator": 60,
+    "registration": 28
+   },
+   "OSLK": {
+    "datetime_takeoff": 59,
+    "datetime_landed": 117,
+    "flight_time": 168,
+    "distance": 2,
+    "operator": 52,
+    "registration": 2
+   }
+  },
+  "detected_gaps": {
+   "OSDI": [
+    {
+     "month": "2026-03",
+     "n": 11
+    },
+    {
+     "month": "2026-09",
+     "n": 300
+    }
+   ],
+   "OSAP": [
+    {
+     "month": "2025-01",
+     "n": 1
+    },
+    {
+     "month": "2025-03",
+     "n": 10
+    },
+    {
+     "month": "2025-04",
+     "n": 25
+    }
+   ],
+   "OSLK": []
+  }
+ }
+}
