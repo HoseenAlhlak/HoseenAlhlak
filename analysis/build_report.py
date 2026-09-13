@@ -46,18 +46,18 @@ def b64(path: Path) -> str:
 def main() -> None:
     metrics = json.loads((RESULTS / "metrics.json").read_text(encoding="utf-8"))
 
-    # تقليص الخطوط ثم تضمينها
+    # تقليص الخطوط ثم تضمينها (Cairo للعناوين + Noto Sans Arabic للمتن — نفس خط الرسوم)
     sub_dir = FONTS / "_subset"
     sub_dir.mkdir(exist_ok=True)
-    amiri = FONTS / "Amiri-Regular.ttf"
-    amiri_b = FONTS / "Amiri-Bold.ttf"
     cairo = FONTS / "Cairo.ttf"
-    sub_amiri = sub_dir / "Amiri-Regular-sub.ttf"
-    sub_amiri_b = sub_dir / "Amiri-Bold-sub.ttf"
+    noto = FONTS / "NotoSansArabic-Regular.ttf"
+    noto_b = FONTS / "NotoSansArabic-Bold.ttf"
     sub_cairo = sub_dir / "Cairo-sub.ttf"
-    subset_font(amiri, sub_amiri)
-    subset_font(amiri_b, sub_amiri_b)
+    sub_noto = sub_dir / "NotoSansArabic-Regular-sub.ttf"
+    sub_noto_b = sub_dir / "NotoSansArabic-Bold-sub.ttf"
     subset_font(cairo, sub_cairo)
+    subset_font(noto, sub_noto)
+    subset_font(noto_b, sub_noto_b)
 
     # الصور
     charts = sorted(CHARTS.glob("c*.png"))
@@ -93,8 +93,8 @@ def main() -> None:
         ltk=metrics["airports"]["OSLK"],
         img=img,
         font_cairo=b64(sub_cairo),
-        font_amiri=b64(sub_amiri),
-        font_amiri_bold=b64(sub_amiri_b),
+        font_noto=b64(sub_noto),
+        font_noto_bold=b64(sub_noto_b),
         cat_share=cat_share,
         pct=lambda part, whole: round(100 * part / max(whole, 1), 1),
         ops_total=lambda code: ops_matrix.get(code, 0),
