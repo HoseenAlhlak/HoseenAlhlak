@@ -1,0 +1,38 @@
+# مطار دمشق الدولي  ← مثال على الصيغة (استبدل القيم ببيانات ملفك)
+# الأسطر التي تبدأ بـ # تُتجاهل. الفاصل بين الاسم والقيمة: = أو :
+# أي حقل غير متوفر اتركه فارغًا أو اكتب NA
+
+airport_name_ar   = مطار دمشق الدولي
+airport_name_en   = Damascus International Airport
+iata              = DAM
+icao              = OSDI
+city              = دمشق
+country           = سوريا
+lat               = 33.41139
+lon               = 36.51556
+elevation_m       = 616
+opened            = 1973
+status            = operational
+terminals         = 2
+gates             = NA
+capacity_mpassengers = NA
+runway_count      = 2
+runway_max_length_m  = 3600
+runway_surface    = asphalt
+destinations      = NA
+airlines          = NA
+hub_for           = Syrian Air, Fly Cham
+passengers_2025   = 1392699
+movements_2025    = NA
+cargo_t_2025      = NA
+asq_score         = NA
+on_time_pct       = NA
+avg_delay_min     = NA
+revenue_usd       = NA
+jobs              = NA
+
+# سلسلة تاريخية (اختياري): سنة=عدد المسافرين، مفصولة بفواصل
+passengers_series = 2019=NA, 2023=NA, 2024=NA, 2025=1392699
+
+# ملاحظات حرة (اختياري)
+notes             = 

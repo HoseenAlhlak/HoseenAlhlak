@@ -1,0 +1,4 @@
+airport_iata,airport_name_ar,airport_name_en,city,country,elevation_m,opened,status,terminals,capacity_mpassengers,runway_count,runway_max_length_m,runway_surface,destinations,airlines,passengers_2025,movements_2025,cargo_t_2025,on_time_pct,notes
+DAM,مطار دمشق الدولي,Damascus International Airport,دمشق,سوريا,616,1973,operational,2,,2,3600,asphalt,,,,,,
+ALP,مطار حلب الدولي,Aleppo International Airport,حلب,سوريا,389,1999,operational,1,,1,3110,asphalt,,,,,,
+LTK,مطار اللاذقية الدولي,Latakia International Airport,اللاذقية,سوريا,48,1983,closed,1,,1,2797,asphalt,,,,,,
